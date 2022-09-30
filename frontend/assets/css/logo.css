@@ -11,9 +11,12 @@
     padding: 10px;
     font-size: 3em;
     text-align:center;
+    padding: 2%;
+    font-weight: bold;
 }
 
 
 .logo img {
     width: 40px;
+  
 }

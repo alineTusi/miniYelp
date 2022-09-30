@@ -1,0 +1,31 @@
+.background-img {
+  background-image: url(https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX6949364.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+
+.nav-link:hover {
+    background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+    border-radius: 15%;
+}
+
+.login-btn {
+  margin: 30px;
+  width: 8%;
+  height: auto;
+  padding: 10px;
+  border: 3px black solid;
+  font-size: large;
+  font-weight: 800;
+  
+
+}
+
+
+.login-btn:hover {
+  border-radius: 10%;
+  background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+
+}
