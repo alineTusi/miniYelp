@@ -15,6 +15,8 @@ console.log(fetchingData())
 
 
 
+
+
 async function renderListItems()  {
 
   let data = await fetchingData()

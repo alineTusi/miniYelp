@@ -1,0 +1,49 @@
+.logo h1 {
+    background-image: url(https://cdn.dribbble.com/users/167024/screenshots/973328/material_gradient.gif);
+    
+    background-size: cover;
+    color: gradient
+;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -moz-background-clip:text;
+    background-clip:text; 
+    padding: 5%;
+    font-size: 3em;
+    text-align:center;
+}
+
+.logo img {
+    width: 40px;
+}
+
+.loginText{
+    text-align:center;
+    
+}
+.loginText h2{
+    font-weight: 100;
+}
+
+.formContainer{
+    text-align:center;
+    font-weight: 100;
+}
+
+.emailInput{
+    width: 28%;
+}
+
+.modalContainer{
+    text-align: center;
+    padding: 5% 0%;
+}
+
+.developer{
+    width: 50%;
+    height: auto;
+}
+
+button.btn.btn-primary{
+    background: #8ea3d1;
+}
