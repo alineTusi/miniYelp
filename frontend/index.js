@@ -1,75 +1,130 @@
-let tableContainer = document.querySelector(".table-container");
+let tableContainer = document.querySelector("tbody");
+let loginBtn = document.querySelector("#login-btn")
 
- async function fetchingData () {
 
-  let url = 'http://localhost:3001/restaurants'
+
+ async function fetchingRestaurantsData () {
+
+  let url = 'https://mini-yelp2022.herokuapp.com/restaurants/'
   try {
       let res = await fetch(url);
-      return await res.json();
+     let result = await res.json();
+     console.log(result)
+     return result
+    
   } catch (error) {
       console.log(error);
   }
 
 }
-console.log(fetchingData())
 
+console.log(fetchingRestaurantsData())
+
+
+async function fetchingCitiesData () {
+
+  let url = 'https://mini-yelp2022.herokuapp.com/cities/'
+  try {
+      let res = await fetch(url);
+     let result = await res.json();
+     console.log(result)
+     return result
+    
+  } catch (error) {
+      console.log(error);
+  }
+
+}
+console.log(fetchingCitiesData())
 
 
 async function renderListItems()  {
 
-  let data = await fetchingData()
+  let restaurantsData = await fetchingRestaurantsData()
+  // console.log(citiesData)
 
    let html = ''
 
-    data.forEach((table) => {
-    
-      let htmlText = `<div class="table-container">
-               <table class="table">
-                          <thead>
-                            <tr>
-                              <th scope="col">Id</th>
-                              <th scope="col">Restaurants</th>
-                              <th scope="col">City</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td scope="row">${table.id}</td>
-                              <td>${table.name}</td>
-                              <td>${table.city}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>`;
+    restaurantsData.forEach((table) => {
+
+      let htmlText = 
+                  `  <tr>
+                      <td scope="row">${table.id}</td>
+                      <td>${table.name}</td>
+                      <td>${citiesData.id}</td>
+                    </tr> `
+                
+                    
        html += htmlText;
 
        tableContainer.innerHTML = html
       
     });
-  
+    
   };
 
-     renderListItems()
+     // renderListItems()
 
 
+     async function renderCityList () {
+      let citiesData = await fetchingCitiesData()
+      let html = ''
 
 
+      citiesData.forEach((city) => {
+                let htmlText = 
+                `  <tr>
+                     <td scope="row">${city.id}</td>
+                    <td>${city.name}</td>
+                  </tr> `
+              
+                  
+        html += htmlText;
+        
+        tableContainer.innerHTML = html
+        
+        
+        
+              })
+
+     }
+     renderCityList()
+
+     async function renderRestaurantsList (cityId) {
+      let restaurantsData = await fetchingRestaurantsData()
+      let html = ''
 
 
+      restaurantsData.forEach((restaurants) => {
+                let htmlText = 
+                `  <tr>
+                     <td scope="row">${restaurants.id}</td>
+                    <td>${restaurants.name}</td>
+                  </tr> `
+              
+                  
+        html += htmlText;
+        
+        tableContainer.innerHTML = html
+        
+        
+        
+              })
 
+     }
+     renderRestaurantsList()
 
+const redirectToLoginPage = () => {
+  loginBtn.addEventListener('click', (event) => {
+    window.location = './login.html';
+  });
 
-
-
-
-
-
-
+}
 function tableSearch() {
   let input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
-  table = document.querySelector(".table");
+  table = document.querySelector("tbody");
   tr = table.getElementsByTagName("tr");
 
   

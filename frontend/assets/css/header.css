@@ -5,27 +5,45 @@
 
 }
 
-
-.nav-link:hover {
-    background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
-    border-radius: 15%;
+.background-img {
+    background-image: url(https://www.wallpaperflare.com/static/316/882/576/meat-plates-dishes-food-wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    background-position: center;
+    object-fit: contain;
 }
 
-.login-btn {
+.nav-link:hover {
+  background-image: linear-gradient(to left, #009245, #18ad18, #D9E021);
+    border-radius: 15%;
+    font-weight: bold;
+    
+}
+
+#login-btn {
   margin: 30px;
   width: 8%;
   height: auto;
   padding: 10px;
-  border: 3px black solid;
+  border: 3px #198754 solid;
   font-size: large;
   font-weight: 800;
+  color: #208351;
+  border-radius: 0.375rem;
   
 
 }
 
 
-.login-btn:hover {
+#login-btn:hover {
   border-radius: 10%;
-  background-image: linear-gradient(to right, #fc6076, #ff9a44, #ef9d43, #e75516);
+  background-image: linear-gradient(to left, #009245, #18ad18, #D9E021);
+  color: white;
 
+}
+.search-header.form-control {
+  height: 50px;
+  width: 340px;
+  margin: 0 10px;
 }
