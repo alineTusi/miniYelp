@@ -6,6 +6,7 @@ let loginBtn = document.querySelector("#login-btn");
 
   let restaurantsUrl = 'https://mini-yelp2022.herokuapp.com/restaurants/'
   let citiesUrl = 'https://mini-yelp2022.herokuapp.com/cities/'
+  let detailsPageUrl = 'https://mini-yelp2022.herokuapp.com/cities/'
 
   let restaurants, cities, restaurantsData, citiesData
 
