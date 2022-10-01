@@ -6,16 +6,15 @@ let loginBtn = document.querySelector("#login-btn");
 
   let restaurantsUrl = 'https://mini-yelp2022.herokuapp.com/restaurants/'
   let citiesUrl = 'https://mini-yelp2022.herokuapp.com/cities/'
-  let detailsPageUrl = 'https://mini-yelp2022.herokuapp.com/cities/'
 
-  let restaurants, cities, restaurantsData, citiesData
+
+  let restaurants, cities, restaurantsData, citiesData, detailsPageData, detailsUrl
 
   restaurantsData = await fetch(restaurantsUrl)
   citiesData = await fetch(citiesUrl)
 
   restaurants = await restaurantsData.json()
   cities = await citiesData.json()
-
   
   const data = restaurants.map((restaurant) => {
     let city = cities.find(city => {
@@ -42,10 +41,10 @@ async function renderListItems()  {
 
       let htmlText = 
                   ` <div class="table">
-                      <tr>
+                      <tr class="list">
                       <td>${table.id}</td>
-                      <td>${table.name}</td>
-                      <td>${table.city_name}</td>
+                      <td class="name">${table.name}</td>
+                      <td class="city">${table.city_name}</td>
                       <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           Details
@@ -85,33 +84,30 @@ async function renderListItems()  {
 
      renderListItems()
 
-function renderingDetailsPage () {
-
-}
-
 const redirectToLoginPage = () => {
   loginBtn.addEventListener('click', (event) => {
     window.location = './login.html';
   });
 
 }
-function tableSearch() {
-  let input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("input-text");
-  filter = input.value.toUpperCase();
-  table = document.querySelector(".table");
-  tr = table.getElementsByTagName("tr");
 
-  
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
+const input = document.getElementById("input-text");
+
+function tableSearch(e) {
+  const tableRow = document.querySelectorAll('.list')
+  const term = e.target.value.toUpperCase();
+
+  tableRow.forEach(row => {
+    console.log(row.querySelector('.name'))
+    const restaurantName = row.querySelector('.name').innerText.toUpperCase()
+    const restaurantCity = row.querySelector('.city').innerText.toUpperCase()
+    
+    if(restaurantName.indexOf(term) > -1 || restaurantCity.indexOf(term) > -1) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
     }
-  }
+  })
 }
+
+input.addEventListener('input', tableSearch);
