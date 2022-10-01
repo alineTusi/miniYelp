@@ -1,49 +1,47 @@
 let tableContainer = document.querySelector("tbody");
 let loginBtn = document.querySelector("#login-btn")
 
+ async function fetchingData () {
 
+  let restaurantsUrl = 'https://mini-yelp2022.herokuapp.com/restaurants/'
+  let citiesUrl = 'https://mini-yelp2022.herokuapp.com/cities/'
 
- async function fetchingRestaurantsData () {
+  let restaurants, cities, restaurantsData, citiesData
 
-  let url = 'https://mini-yelp2022.herokuapp.com/restaurants/'
-  try {
-      let res = await fetch(url);
-     let result = await res.json();
-     console.log(result)
-     return result
+  restaurantsData = await fetch(restaurantsUrl)
+  citiesData = await fetch(citiesUrl)
+
+  restaurants = await restaurantsData.json()
+  cities = await citiesData.json()
+
+  
+  const data = restaurants.map((restaurant) => {
+    let city = cities.find(city => {
+      return city.id === restaurant.city_id
+    })
+    return {
+      ...restaurant,
+      city_name: city.name
+    }
+  })
+
+  return data
+
+  // try {
+  //   let res = await fetch(url);
+  //   let result = await res.json();
+  //   return result
     
-  } catch (error) {
-      console.log(error);
-  }
+  // } catch (error) {
+  //     console.log(error);
+  // }
 
 }
-
-console.log(fetchingRestaurantsData())
-
-
-async function fetchingCitiesData () {
-
-  let url = 'https://mini-yelp2022.herokuapp.com/cities/'
-  try {
-      let res = await fetch(url);
-     let result = await res.json();
-     console.log(result)
-     return result
-    
-  } catch (error) {
-      console.log(error);
-  }
-
-}
-console.log(fetchingCitiesData())
-
-
-
 
 async function renderListItems()  {
-
-  let restaurantsData = await fetchingRestaurantsData()
-  // console.log(citiesData)
+  
+  let restaurantsData = await fetchingData()
+  console.log(restaurantsData)
 
    let html = ''
 
@@ -51,9 +49,9 @@ async function renderListItems()  {
 
       let htmlText = 
                   `  <tr>
-                      <td scope="row">${table.id}</td>
+                      <td>${table.id}</td>
                       <td>${table.name}</td>
-                      <td>${citiesData.id}</td>
+                      <td>${table.city_name}</td>
                     </tr> `
                 
                     
@@ -65,56 +63,8 @@ async function renderListItems()  {
     
   };
 
-     // renderListItems()
+     renderListItems()
 
-
-     async function renderCityList () {
-      let citiesData = await fetchingCitiesData()
-      let html = ''
-
-
-      citiesData.forEach((city) => {
-                let htmlText = 
-                `  <tr>
-                     <td scope="row">${city.id}</td>
-                    <td>${city.name}</td>
-                  </tr> `
-              
-                  
-        html += htmlText;
-        
-        tableContainer.innerHTML = html
-        
-        
-        
-              })
-
-     }
-     renderCityList()
-
-     async function renderRestaurantsList (cityId) {
-      let restaurantsData = await fetchingRestaurantsData()
-      let html = ''
-
-
-      restaurantsData.forEach((restaurants) => {
-                let htmlText = 
-                `  <tr>
-                     <td scope="row">${restaurants.id}</td>
-                    <td>${restaurants.name}</td>
-                  </tr> `
-              
-                  
-        html += htmlText;
-        
-        tableContainer.innerHTML = html
-        
-        
-        
-              })
-
-     }
-     renderRestaurantsList()
 
 const redirectToLoginPage = () => {
   loginBtn.addEventListener('click', (event) => {
