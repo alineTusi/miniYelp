@@ -27,15 +27,6 @@ let loginBtn = document.querySelector("#login-btn")
 
   return data
 
-  // try {
-  //   let res = await fetch(url);
-  //   let result = await res.json();
-  //   return result
-    
-  // } catch (error) {
-  //     console.log(error);
-  // }
-
 }
 
 async function renderListItems()  {

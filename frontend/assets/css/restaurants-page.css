@@ -1,0 +1,12 @@
+.restDetailsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.restName{
+    padding: 1%;
+    text-align: center;
+}
+.restContainer img{
+    width: 800px;
+}
