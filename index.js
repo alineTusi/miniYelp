@@ -41,38 +41,14 @@ async function renderListItems()  {
     restaurantsData.forEach((table) => {
 
       let htmlText = 
-                  `  <tr>
+                  ` <div class="table">
+                      <tr>
                       <td>${table.id}</td>
                       <td>${table.name}</td>
                       <td>${table.city_name}</td>
-                      <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          Details
-                        </button>
-                      </td>
-                      <!-- Button trigger modal -->
-
-
-                      <!-- Modal -->
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">${table.name}</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <img src="${table.picture}" alt="" width="100%" />
-                              <p class="mt-4"><b>City</b>: ${table.city_name}<p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </tr> `  
+                    </tr> 
+                    </div>`
+                
                     
        html += htmlText;
 
@@ -96,9 +72,9 @@ const redirectToLoginPage = () => {
 }
 function tableSearch() {
   let input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
+  input = document.getElementById("input-text");
   filter = input.value.toUpperCase();
-  table = document.querySelector("tbody");
+  table = document.querySelector(".table");
   tr = table.getElementsByTagName("tr");
 
   
