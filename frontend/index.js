@@ -27,15 +27,6 @@ let loginBtn = document.querySelector("#login-btn")
 
   return data
 
-  // try {
-  //   let res = await fetch(url);
-  //   let result = await res.json();
-  //   return result
-    
-  // } catch (error) {
-  //     console.log(error);
-  // }
-
 }
 
 async function renderListItems()  {
@@ -52,6 +43,7 @@ async function renderListItems()  {
                       <td>${table.id}</td>
                       <td>${table.name}</td>
                       <td>${table.city_name}</td>
+                      <td><a href='restaurants-page.html?id=${table.id}'>Url</a></td>
                     </tr> `
                 
                     
