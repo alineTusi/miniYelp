@@ -1,5 +1,6 @@
 let tableContainer = document.querySelector("tbody");
-let loginBtn = document.querySelector("#login-btn")
+let loginBtn = document.querySelector("#login-btn");
+
 
  async function fetchingData () {
 
@@ -58,6 +59,9 @@ async function renderListItems()  {
 
      renderListItems()
 
+function renderingDetailsPage () {
+
+}
 
 const redirectToLoginPage = () => {
   loginBtn.addEventListener('click', (event) => {
