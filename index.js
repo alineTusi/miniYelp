@@ -72,10 +72,9 @@ async function renderListItems()  {
                           <div class="modal-content">
                             <div class="modal-header">
                               <h5 class="modal-title" id="exampleModalLabel">${table.name}</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <img src="${table.picture}" alt="" width="50%" />
+                              <img src="${table.picture}" alt="" width="100%" />
                               <p class="mt-4"><b>City</b>: ${table.city_name}<p>
                               <p class="mt-4"><b>Comments:</b><p>
                               <ul>
@@ -86,7 +85,6 @@ async function renderListItems()  {
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                           </div>
                         </div>
