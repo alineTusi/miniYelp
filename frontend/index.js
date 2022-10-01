@@ -38,6 +38,8 @@ async function fetchingCitiesData () {
 console.log(fetchingCitiesData())
 
 
+
+
 async function renderListItems()  {
 
   let restaurantsData = await fetchingRestaurantsData()
