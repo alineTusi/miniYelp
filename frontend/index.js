@@ -48,11 +48,13 @@ async function renderListItems()  {
     restaurantsData.forEach((table) => {
 
       let htmlText = 
-                  `  <tr>
+                  ` <div class="table">
+                      <tr>
                       <td>${table.id}</td>
                       <td>${table.name}</td>
                       <td>${table.city_name}</td>
-                    </tr> `
+                    </tr> 
+                    </div>`
                 
                     
        html += htmlText;
@@ -74,9 +76,9 @@ const redirectToLoginPage = () => {
 }
 function tableSearch() {
   let input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
+  input = document.getElementById("input-text");
   filter = input.value.toUpperCase();
-  table = document.querySelector("tbody");
+  table = document.querySelector(".table");
   tr = table.getElementsByTagName("tr");
 
   
