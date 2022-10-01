@@ -6,9 +6,8 @@ let loginBtn = document.querySelector("#login-btn");
 
   let restaurantsUrl = 'https://mini-yelp2022.herokuapp.com/restaurants/'
   let citiesUrl = 'https://mini-yelp2022.herokuapp.com/cities/'
-
-
-  let restaurants, cities, restaurantsData, citiesData, detailsPageData, detailsUrl
+  
+  let restaurants, cities, restaurantsData, citiesData
 
   restaurantsData = await fetch(restaurantsUrl)
   citiesData = await fetch(citiesUrl)
@@ -17,9 +16,12 @@ let loginBtn = document.querySelector("#login-btn");
   cities = await citiesData.json()
   
   const data = restaurants.map((restaurant) => {
+
     let city = cities.find(city => {
       return city.id === restaurant.city_id
     })
+
+    
     return {
       ...restaurant,
       city_name: city.name
@@ -37,7 +39,20 @@ async function renderListItems()  {
 
    let html = ''
 
-    restaurantsData.forEach((table) => {
+    restaurantsData.forEach(async (table) => {
+      let commentsUrl = 'https://mini-yelp2022.herokuapp.com/restaurants'
+      let commentsData = await fetch(`${commentsUrl}/${table.id}`)
+      let comments = await commentsData.json()
+
+      let commentsList = comments[0].comments.map((item) => {
+        return `
+          <li class="commentsList">
+            <span><b>Date:</b>${item.date.slice(0,10)}</span>
+            <span><b>Comment:</b>${item.text}</span>
+          </li>
+        `
+      }).join('')
+
 
       let htmlText = 
                   ` <div class="table">
@@ -62,7 +77,11 @@ async function renderListItems()  {
                             <div class="modal-body">
                               <img src="${table.picture}" alt="" width="50%" />
                               <p class="mt-4"><b>City</b>: ${table.city_name}<p>
-                              <p> Geo Location </p>
+                              <p class="mt-4"><b>Comments:</b><p>
+                              <ul>
+                                ${commentsList}
+                              </ul>
+                              <p> <b> Geo Location </b> </p>
                               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2591.2552679862915!2d8.466776315797308!3d49.49857326337036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4797cc2e0b2a5c4d%3A0x5c6d2270ebe36f9!2sMittelstra%C3%9Fe%2040%2C%2068169%20Mannheim!5e0!3m2!1sen!2sde!4v1664627868887!5m2!1sen!2sde" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                             <div class="modal-footer">
